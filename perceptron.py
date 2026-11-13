@@ -11,6 +11,7 @@ class Perceptron:
         self.weights = []
         self.bias = 0
         self.lr = 0.1
+        self.training_result = ""
 
     def fit(self, x_inputs, labels):
         self.x_inputs = x_inputs
@@ -39,16 +40,21 @@ class Perceptron:
             max_epoch += 1
         else:
             if update != 0:
-                print("not converged")
+                self.training_result = "not converged"
             else:
-                print("converged")
+                self.training_result = "converged"
 
     def predict(self, x_inputs):
-        ws = 0
-        for i, x1 in enumerate(x_inputs):
-            ws += x1 * self.weights[i]
-        ws += self.bias
-        return step(ws)
+        if self.training_result == "not converged":
+            return (
+                "the training didnt converge. can't be predict by a sinlge perceptron"
+            )
+        else:
+            ws = 0
+            for i, x1 in enumerate(x_inputs):
+                ws += x1 * self.weights[i]
+            ws += self.bias
+            return step(ws)
 
 
 if __name__ == "__main__":

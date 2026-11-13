@@ -1,5 +1,5 @@
 [project]
-name = "ai-learning"
+name = "single-perceptron"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-ai-learning = "ai_learning:main"
+single-perceptron = "single-perceptron:main"
 
 [build-system]
 requires = ["uv_build>=0.12.17,<0.13.0"]
