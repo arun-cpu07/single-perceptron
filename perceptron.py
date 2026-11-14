@@ -21,10 +21,10 @@ class Perceptron:
         self.x_inputs = x_inputs
         self.y = labels
         weighted_sum = 0
-        update, i = 1, 1
+        update, iteration = 1, 1
         self.weights = [0] * len(self.x_inputs[0])
         self.bias = 0
-        while update > 0 and i <= self.max_epoch:
+        while update > 0 and iteration <= self.max_epoch:
             update = 0
             for i in range(len(self.x_inputs)):
                 weighted_sum = 0
@@ -41,7 +41,7 @@ class Perceptron:
                     ]
                     self.bias += correction_var
                     update += 1
-            i += 1
+            iteration += 1
         else:
             if update != 0:
                 print(
