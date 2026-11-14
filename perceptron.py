@@ -7,20 +7,24 @@ def step(ws):
 
 # Perceptron class
 class Perceptron:
-    def __init__(self):
+    def __init__(
+        self,
+        max_epoch=100,
+    ):
         self.weights = []
         self.bias = 0
         self.lr = 0.1
         self.training_result = ""
+        self.max_epoch = max_epoch
 
     def fit(self, x_inputs, labels):
         self.x_inputs = x_inputs
         self.y = labels
         weighted_sum = 0
-        update, max_epoch = 1, 1
+        update, i = 1, 1
         self.weights = [0] * len(self.x_inputs[0])
         self.bias = 0
-        while update > 0 and max_epoch <= 100:
+        while update > 0 and i <= self.max_epoch:
             update = 0
             for i in range(len(self.x_inputs)):
                 weighted_sum = 0
@@ -37,11 +41,15 @@ class Perceptron:
                     ]
                     self.bias += correction_var
                     update += 1
-            max_epoch += 1
+            i += 1
         else:
             if update != 0:
+                print(
+                    "not converged. If you are sure that the problem is lineraly seperable then try including an max_epoch count greater than the initial value 100"
+                )
                 self.training_result = "not converged"
             else:
+                print("converged")
                 self.training_result = "converged"
 
     def predict(self, x_inputs):
@@ -116,3 +124,13 @@ if __name__ == "__main__":
     print("0, 1", u.predict([0, 1]))
     print("1, 0", u.predict([1, 0]))
     print("0, 0", u.predict([0, 0]))
+
+    v = Perceptron(max_epoch=500)
+    marks_input = [[15], [28], [35], [36], [34], [33], [39], [40], [52], [68], [88]]
+    marks_labels = [0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1]
+    v.fit(marks_input, marks_labels)
+    print("36", v.predict([36]))
+    print("30", v.predict([30]))
+    print("3", v.predict([3]))
+    print("86", v.predict([86]))
+    print("98", v.predict([96]))
