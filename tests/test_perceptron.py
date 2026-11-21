@@ -78,7 +78,7 @@ def test_pass_scores():
 
 
 def test_loan_approval():
-    v = Perceptron(max_epoch=1000000)
+    v = Perceptron(max_epoch=5000)
     income_and_debt = [
         [2, 0],  # Difference = 20000
         [2.5, 0.5],  # Difference = 20000
