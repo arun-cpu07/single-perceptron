@@ -50,6 +50,7 @@ class Perceptron:
                 self.training_result = "not converged"
             else:
                 print("converged")
+                print(f"the weights are {self.weights}, and bias is {self.bias}")
                 self.training_result = "converged"
 
     def predict(self, x_inputs):
@@ -125,12 +126,37 @@ if __name__ == "__main__":
     print("1, 0", u.predict([1, 0]))
     print("0, 0", u.predict([0, 0]))
 
-    v = Perceptron(max_epoch=500)
+    q = Perceptron(max_epoch=500)
     marks_input = [[15], [28], [35], [36], [34], [33], [39], [40], [52], [68], [88]]
     marks_labels = [0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1]
-    v.fit(marks_input, marks_labels)
-    print("36", v.predict([36]))
-    print("30", v.predict([30]))
-    print("3", v.predict([3]))
-    print("86", v.predict([86]))
-    print("98", v.predict([96]))
+    q.fit(marks_input, marks_labels)
+    print("36", "pass" if q.predict([36]) else "fail")
+    print("30", "pass" if q.predict([36]) else "fail")
+    print("3", "pass" if q.predict([36]) else "fail")
+    print("86", "pass" if q.predict([36]) else "fail")
+    print("98", "pass" if q.predict([36]) else "fail")
+
+    v = Perceptron(max_epoch=1000000)
+    income_and_debt = [
+        [2, 0],  # Difference = 20000
+        [2.5, 0.5],  # Difference = 20000
+        [2.9, 0],  # Difference = 29000
+        [5, 4],  # Difference = 10000
+        [6, 5],  # Difference = 10000
+        [7, 5.5],  # Difference = 15000
+        [8, 6],  # Difference = 20000
+        [9, 6.5],  # Difference = 25000
+        [10, 7.1],  # Difference = 29000
+        [10, 7],  # Difference = 30000
+        [3, 0],  # Difference = 30000
+        [4, 1],  # Difference = 30000
+        [4, 0.5],  # Difference = 35000
+        [10, 6.9],  # Difference = 31000
+        [12, 8],  # Difference = 40000
+        [15, 8],  # Difference = 70000
+        [18, 9],  # Difference = 90000
+        [20, 10],  # Difference = 100000
+    ]
+    approval_status = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    v.fit(income_and_debt, approval_status)
+    v.predict([7, 4.1])
