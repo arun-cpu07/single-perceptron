@@ -7,15 +7,13 @@ def step(ws):
 
 # Perceptron class
 class Perceptron:
-    def __init__(
-        self,
-        max_epoch=100,
-    ):
+    def __init__(self, max_epoch=100, verbose=False):
         self.weights = []
         self.bias = 0
         self.lr = 0.1
         self.training_result = ""
         self.max_epoch = max_epoch
+        self.verbose = verbose
 
     def fit(self, x_inputs, labels):
         self.x_inputs = x_inputs
@@ -44,13 +42,15 @@ class Perceptron:
             iteration += 1
         else:
             if update != 0:
-                print(
-                    "not converged. If you are sure that the problem is lineraly seperable then try including an max_epoch count greater than the initial value 100"
-                )
+                if self.verbose:
+                    print(
+                        "not converged. If you are sure that the problem is lineraly seperable then try including an max_epoch count greater than the initial value 100"
+                    )
                 self.training_result = "not converged"
             else:
-                print("converged")
-                print(f"the weights are {self.weights}, and bias is {self.bias}")
+                if self.verbose:
+                    print("converged")
+                    print(f"the weights are {self.weights}, and bias is {self.bias}")
                 self.training_result = "converged"
 
     def predict(self, x_inputs):
