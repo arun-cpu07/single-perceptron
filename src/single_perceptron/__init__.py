@@ -1,4 +1,4 @@
-from single_perceptron import Perceptron
+from .perceptron import Perceptron
 
 __all__ = ["Perceptron"]
 
