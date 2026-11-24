@@ -1,6 +1,12 @@
 # Single Perceptron
 
-A from-scratch Python implementation of a single perceptron, the building block of a neural network, with no external libraries like pandas required.
+A from-scratch Python implementation of a single perceptron, the building block of a neural network.
+
+- **perceptron.py** this version uses only the python standard libraries.
+- **numpy_perceptron.py** this version uses NumPy for faster matrix multiplications
+
+
+Neither uses scikit-learn or TensorFlow.
 
 Repository: <https://github.com/arun-cpu07/single-perceptron>
 
