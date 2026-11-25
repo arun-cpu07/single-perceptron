@@ -2,6 +2,14 @@ from .perceptron import Perceptron
 
 __all__ = ["Perceptron"]
 
+try:
+    from .numpy_perceptron import NumpyPerceptron
+
+    has_numpy = True
+    __all__.append("NumpyPerceptron")
+except ImportError:
+    has_numpy = False
+
 
 def main() -> None:
     print("Hello from single perceptron!")
@@ -104,3 +112,10 @@ def main() -> None:
     print(f"your loan has been {'approved' if v.predict([6, 5]) else 'not approved'}")
     print(f"your loan has been {'approved' if v.predict([10, 4]) else 'not approved'}")
     print(f"your loan has been {'approved' if v.predict([25, 10]) else 'not approved'}")
+
+    if has_numpy:
+        pass
+    else:
+        print(
+            "\nThe perceptron using NumPy has been ignored... Refer README.md for instructions..."
+        )
